@@ -1,17 +1,22 @@
 require("dotenv").config();
 require("express-async-errors");
-
-const express = require("express");
-const app = express();
+const bodyParser = require("body-parser");
 
 const nonprofitsRouter = require("./routes/non-profits");
+const foundationRouter = require("./routes/foundation");
 
 const notFoundMiddleware = require("./middleware/not-found");
 const errorMiddleware = require("./middleware/error-handler");
+const express = require("express");
+const cors = require("cors");
+const app = express();
 
 // middleware
+app.use(cors());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());
-
+app.use(express.urlencoded({ extended: true }));
 // routes
 
 app.get("/", (req, res) => {
@@ -21,6 +26,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api/v1/non-profits", nonprofitsRouter);
+app.use("/api/v1/foundation", foundationRouter);
 
 // products route
 
