@@ -4,6 +4,7 @@ const router = express.Router();
 const { addFoundation, login } = require("../controllers/foundation");
 
 router.route("/add").post(addFoundation);
+router.route("/add-foundation").post(addFoundation);
 router.route("/login").post(login);
 
 module.exports = router;

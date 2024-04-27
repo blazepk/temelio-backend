@@ -7,12 +7,14 @@ const nonprofits = [];
 const addNonProfit = async (req, res) => {
   const { email, address, name } = req.body;
   nonprofits.push({ email, address, name, id: uuid() });
-  res.status(200).json({ hi: "bye" });
+  res
+    .status(200)
+    .json({ success: true, messsage: "Non Profit added successfully" });
 };
 const donateToNonProfit = async (req, res) => {
   const nonProfit = nonprofits.find((item) => item.id === req.params.id);
   emailClient.sendEmail(
-    "recipient@example.com",
+    nonProfit.email,
     "Test Subject",
     "This is a test email content"
   );

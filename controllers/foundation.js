@@ -4,9 +4,9 @@ const { v4: uuid } = require("uuid");
 const foundations = [];
 
 const addFoundation = async (req, res) => {
+  console.log("here", req.body);
   const foundationEmail = req.body.email;
   const foundationPassword = req.body.password;
-  console.log("here", req.body);
   if (!foundationEmail || !foundationPassword) {
     return res.status(400).json({
       success: false,
@@ -24,8 +24,10 @@ const addFoundation = async (req, res) => {
     });
   }
 };
+
+const addNewFoundation = async (req, res) => {};
 const login = async (req, res) => {
-  //   console.log("req.body", req.body);
+  console.log("req.body", req.body);
   const foundationsCopy = _.cloneDeep(foundations);
   const foundationFound = foundationsCopy.filter(
     (item) =>
