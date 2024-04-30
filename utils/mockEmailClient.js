@@ -10,6 +10,7 @@ class MockEmailClient {
     console.log("Mock email sent to:", recipient);
     console.log("Subject:", subject);
     console.log("Content:", content);
+    return content;
   }
 }
 
